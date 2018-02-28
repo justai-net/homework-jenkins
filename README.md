@@ -10,3 +10,8 @@ Start Jenkins
 ```
 # docker-compose up
 ```
+
+Use Ansible playbook to install Docker, Pull Image, Start Image
+```
+# ansible-playbook -i inventory playbooks/deploy-jenkins.yml
+```
