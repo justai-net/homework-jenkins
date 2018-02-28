@@ -1,0 +1,30 @@
+---
+- name: Check to see if Docker has started, start if not
+  become: yes
+  service: name=docker state=started
+
+- name: Pull image from repository
+  become: yes
+  docker_image:
+    name: justai/homework-jenkins
+
+- name: Create Jenkins static folder
+  become: yes
+  file:
+    path: /var/jenkins_home
+    state: directory
+    owner: vagrant
+    group: wheel
+    mode: 0775
+
+- name: Start the Jenkins container
+  become: yes
+  docker_container:
+    name: jenkins
+    image: justai/homework-jenkins
+    state: started
+    keep_volumes: True
+    volumes:
+        - /var/jenkins_home:/var/jenkins_home
+    ports:
+     - "8081:8080"

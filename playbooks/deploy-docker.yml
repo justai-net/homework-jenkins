@@ -1,0 +1,7 @@
+---
+- name: Deploy Jenkins with Docker and following containers.
+  hosts: all
+  gather_facts: no
+  roles:
+      - docker
+      - jenkins

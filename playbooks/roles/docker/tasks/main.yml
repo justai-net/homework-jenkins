@@ -1,0 +1,18 @@
+---
+- name: Install Docker
+  become: yes
+  yum:
+    name:
+      - epel-release
+      - docker
+      - python-pip
+      - docker
+    state: latest
+  notify: "Enable Docker and Start"
+
+- name: Install requirements
+  become: yes
+  pip:
+    name:
+      - docker
+    state: latest
